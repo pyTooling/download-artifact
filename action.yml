@@ -75,11 +75,11 @@ runs:
         repository: ${{ inputs.repository }}
         run-id: ${{ inputs.run-id }}
 
-    - name: 🔎 Inspect after download
-      id: inspect
-      shell: bash
-      run: |
-        tree -psh .
+#    - name: 🔎 Inspect after download
+#      id: inspect
+#      shell: bash
+#      run: |
+#        tree -psh .
 
     - name: Extract tarball content(s)
       id: extract
