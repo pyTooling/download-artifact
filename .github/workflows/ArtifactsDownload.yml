@@ -29,7 +29,7 @@ jobs:
           tree -psh .
 
       - name: 📤 Upload artifact
-        uses: pyTooling/upload-artifact@main
+        uses: pyTooling/upload-artifact@v4
         with:
           name: release-1
           path: |
@@ -64,7 +64,7 @@ jobs:
           tree -psh .
 
       - name: 📤 Upload artifact
-        uses: pyTooling/upload-artifact@main
+        uses: pyTooling/upload-artifact@v4
         with:
           name: release-2
           path: |
@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@main
+        uses: pyTooling/download-artifact@v4
         with:
           name: release-1
 
@@ -189,7 +189,7 @@ jobs:
 
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@main
+        uses: pyTooling/download-artifact@v4
         with:
           name: release-2
           path: myDownload
@@ -297,7 +297,7 @@ jobs:
 
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@main
+        uses: pyTooling/download-artifact@v4
         with:
           path: myDownload
 
