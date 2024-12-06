@@ -8,11 +8,13 @@ inputs:
       Name of the artifact to download.
       If unspecified, all artifacts for the run are downloaded.
       Optional.
+    type: string
     required: false
   path:
     description: |
       Destination path. Supports basic tilde expansion.
       Optional. Default is $GITHUB_WORKSPACE
+    type: string
     required: false
   pattern:
     description: |
@@ -53,7 +55,7 @@ inputs:
     type: string
     required: false
     default: ${{ github.run_id }}
-  temp_tarball:
+  tarball-name:
     type: string
     required: false
     default: '__upload_artifact__.tar'
@@ -105,8 +107,8 @@ runs:
         for artifactDirectory in "${artifactDirectories[@]}"; do
           pushd "${artifactDirectory}" > /dev/null
         
-          echo -n "Extracting tarball '${artifactDirectory}/${{ inputs.temp_tarball }}' ... "
-          tar -xf "${{ inputs.temp_tarball }}"
+          echo -n "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+          tar -xf "${{ inputs.tarball-name }}"
           if [[ $? -ne 0 ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
           else
@@ -135,7 +137,7 @@ runs:
         
         for artifactDirectory in "${artifactDirectories[@]}"; do
           echo -n "Removing temporary tarball ... "
-          rm -f "${artifactDirectory}/${{ inputs.temp_tarball }}"
+          rm -f "${artifactDirectory}/${{ inputs.tarball-name }}"
           if [[ $? -ne 0 ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
           else

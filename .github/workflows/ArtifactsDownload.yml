@@ -19,6 +19,8 @@ jobs:
           mkdir -p bin
           echo "Program $(date --utc '+%d.%m.%Y - %H:%M:%S')"   > bin/program.py
           chmod u+x bin/program.py
+          echo "Tool $(date --utc '+%d.%m.%Y - %H:%M:%S')"      > bin/tool.py
+          chmod g+x bin/tool.py
           
           mkdir -p lib
           echo "Library $(date --utc '+%d.%m.%Y - %H:%M:%S')"   > lib/common.py
@@ -54,6 +56,8 @@ jobs:
           mkdir -p bin
           echo "Program $(date --utc '+%d.%m.%Y - %H:%M:%S')"   > bin/program.py
           chmod u+x bin/program.py
+          echo "Tool $(date --utc '+%d.%m.%Y - %H:%M:%S')"      > bin/tool.py
+          chmod g+x bin/tool.py
           
           mkdir -p lib
           echo "Library $(date --utc '+%d.%m.%Y - %H:%M:%S')"   > lib/common.py
