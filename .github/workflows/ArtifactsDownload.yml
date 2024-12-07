@@ -31,6 +31,16 @@ jobs:
           tree -psh .
 
       - name: 📤 Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy
+          path: |
+            document1.txt
+            *.log
+            bin/
+            lib/*.py
+
+      - name: 📤 Upload artifact
         uses: pyTooling/upload-artifact@v4
         with:
           name: release-1
@@ -108,9 +118,9 @@ jobs:
           echo "----------------------------------------"
           
           echo -n "Was tarball removed ... "
-          if [[ -f __upload_artifact__.tar ]]; then
+          if [[ -f __pyTooling_upload_artifact__.tar ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
-            echo -e "${ANSI_LIGHT_RED}Artifact's tarball '__upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
+            echo -e "${ANSI_LIGHT_RED}Artifact's tarball '__pyTooling_upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
             exit 1
           else
             echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
@@ -215,9 +225,9 @@ jobs:
           echo "----------------------------------------"
           
           echo -n "Was tarball removed ... "
-          if [[ -f myDownload/__upload_artifact__.tar ]]; then
+          if [[ -f myDownload/__pyTooling_upload_artifact__.tar ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
-            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/__upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
+            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/__pyTooling_upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
             exit 1
           else
             echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
@@ -322,17 +332,17 @@ jobs:
           echo "----------------------------------------"
           
           echo -n "Was tarball of 'release-1' removed ... "
-          if [[ -f myDownload/release-1/__upload_artifact__.tar ]]; then
+          if [[ -f myDownload/release-1/__pyTooling_upload_artifact__.tar ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
-            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/release-1/__upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
+            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/release-1/__pyTooling_upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
             exit 1
           else
             echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
           fi
           echo -n "Was tarball of 'release-2' removed ... "
-          if [[ -f myDownload/release-2/__upload_artifact__.tar ]]; then
+          if [[ -f myDownload/release-2/__pyTooling_upload_artifact__.tar ]]; then
             echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
-            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/release-2/__upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
+            echo -e "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/release-2/__pyTooling_upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
             exit 1
           else
             echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
@@ -413,3 +423,19 @@ jobs:
           else
             echo -e "${ANSI_LIGHT_GREEN}No errors found.${ANSI_NOCOLOR}"
           fi
+
+  Verify-legacy:
+    name: Verify legacy upload
+    runs-on: ubuntu-24.04
+    needs:
+      - Build-1
+
+    steps:
+      - name: 📥 Download artifact
+        uses: pyTooling/download-artifact@v4
+        with:
+          name: legacy
+
+      - name: 🔎 Inspect artifact content
+        run: |
+          tree .

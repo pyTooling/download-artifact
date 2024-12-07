@@ -1,4 +1,7 @@
 name: Download (preserving) Artifact(s)
+branding:
+  icon: download
+  color: yellow
 description: Download the artifact(s) with preserved file privileges which were previously uploaded by the 'upload-artifact' action.
 author: Patrick Lehmann (@Paebbels)
 
@@ -58,7 +61,7 @@ inputs:
   tarball-name:
     type: string
     required: false
-    default: '__upload_artifact__.tar'
+    default: '__pyTooling_upload_artifact__.tar'
 
 outputs:
   download-path:
@@ -96,6 +99,7 @@ runs:
 
         ANSI_LIGHT_RED="\e[91m"
         ANSI_LIGHT_GREEN="\e[92m"
+        ANSI_LIGHT_YELLOW="\e[93m"
         ANSI_NOCOLOR="\e[0m"
 
         if [[ "${{ inputs.name }}" == "" ]]; then
@@ -107,12 +111,20 @@ runs:
         for artifactDirectory in "${artifactDirectories[@]}"; do
           pushd "${artifactDirectory}" > /dev/null
         
-          echo -n "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
-          tar -xf "${{ inputs.tarball-name }}"
-          if [[ $? -ne 0 ]]; then
-            echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
+          echo -n "Checking tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+          if [[ -f "${{ inputs.tarball-name }}" ]]; then
+            echo -e "${ANSI_LIGHT_GREEN}[FOUND]${ANSI_NOCOLOR}"
+        
+            echo -n "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+            tar -xf "${{ inputs.tarball-name }}"
+            if [[ $? -ne 0 ]]; then
+              echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
+            else
+              echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
+            fi
           else
-            echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
+            echo -e "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
+            echo "  → assuming artifact was uploaded by actions/upload-artifact"
           fi
           
           popd > /dev/null
