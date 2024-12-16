@@ -108,10 +108,10 @@ runs:
       run: |
         set +e
 
-        ANSI_LIGHT_RED="\e[91m"
-        ANSI_LIGHT_GREEN="\e[92m"
-        ANSI_LIGHT_YELLOW="\e[93m"
-        ANSI_NOCOLOR="\e[0m"
+        ANSI_LIGHT_RED=$'\x1b[91m'
+        ANSI_LIGHT_GREEN=$'\x1b[92m'
+        ANSI_LIGHT_YELLOW=$'\x1b[93m'
+        ANSI_NOCOLOR=$'\x1b[0m'
 
         if [[ "${{ inputs.name }}" == "" ]]; then
           artifactDirectories=(*/)
@@ -122,20 +122,20 @@ runs:
         for artifactDirectory in "${artifactDirectories[@]}"; do
           pushd "${artifactDirectory}" > /dev/null
 
-          echo -n "Checking tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+          printf "%s" "Checking tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
           if [[ -f "${{ inputs.tarball-name }}" ]]; then
-            echo -e "${ANSI_LIGHT_GREEN}[FOUND]${ANSI_NOCOLOR}"
+            printf "%s\n" "${ANSI_LIGHT_GREEN}[FOUND]${ANSI_NOCOLOR}"
 
-            echo -n "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+            printf "%s" "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
             tar -xf "${{ inputs.tarball-name }}"
             if [[ $? -ne 0 ]]; then
-              echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
+              printf "%s\n" "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
             else
-              echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
+              printf "%s\n" "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
             fi
           else
-            echo -e "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
-            echo "  → assuming artifact was uploaded by actions/upload-artifact"
+            printf "%s\n" "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
+            printf "%s\n" "  → assuming artifact was uploaded by actions/upload-artifact"
           fi
 
           popd > /dev/null
@@ -148,9 +148,9 @@ runs:
       run: |
         set +e
 
-        ANSI_LIGHT_RED="\e[91m"
-        ANSI_LIGHT_GREEN="\e[92m"
-        ANSI_NOCOLOR="\e[0m"
+        ANSI_LIGHT_RED=$'\x1b[91m'
+        ANSI_LIGHT_GREEN=$'\x1b[92m'
+        ANSI_NOCOLOR=$'\x1b[0m'
 
         if [[ "${{ inputs.name }}" == "" ]]; then
           artifactDirectories=(*/)
@@ -159,11 +159,11 @@ runs:
         fi
 
         for artifactDirectory in "${artifactDirectories[@]}"; do
-          echo -n "Removing temporary tarball ... "
+          printf "%s" "Removing temporary tarball ... "
           rm -f "${artifactDirectory}/${{ inputs.tarball-name }}"
           if [[ $? -ne 0 ]]; then
-            echo -e "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
+            printf "%s\n" "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
           else
-            echo -e "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
+            printf "%s\n" "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
           fi
         done
