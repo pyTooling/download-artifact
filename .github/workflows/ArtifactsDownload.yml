@@ -112,11 +112,12 @@ jobs:
         uses: pyTooling/download-artifact@dev
         with:
           name: ${{ matrix.uploader.name }}-release-1
+          investigate: true
 
       - name: 🔎 Inspect extracted artifact (tarball)
         if: matrix.os.name != 'macOS'
         run: |
-          tree -psh .
+          tree -pash .
 
       - name: 🔎 Inspect cleanup
         uses: ./.github/actions/check-cleanup
@@ -175,7 +176,7 @@ jobs:
       - name: 🔎 Inspect extracted artifact (tarball)
         if: matrix.os.name != 'macOS'
         run: |
-          tree -psh .
+          tree -pash .
 
       - name: 🔎 Inspect cleanup
         uses: ./.github/actions/check-cleanup
@@ -231,11 +232,12 @@ jobs:
         with:
           pattern: ${{ matrix.uploader.name }}-release-*
           path: myDownload
+          investigate: true
 
       - name: 🔎 Inspect extracted artifact (tarball)
         if: matrix.os.name != 'macOS'
         run: |
-          tree -psh .
+          tree -pash .
 
       - name: 🔎 Inspect cleanup
         uses: ./.github/actions/check-cleanup
@@ -305,11 +307,12 @@ jobs:
         uses: pyTooling/download-artifact@dev
         with:
           name: ${{ matrix.uploader.name }}-legacy
+          investigate: true
 
       - name: 🔎 Inspect artifact content
         if: matrix.os.name != 'macOS'
         run: |
-          tree -psh .
+          tree -pash .
 
       - name: 📋 Verify extracted artifact content
         uses: ./.github/actions/check-directory-content

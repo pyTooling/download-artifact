@@ -73,6 +73,11 @@ inputs:
     type: string
     required: false
     default: '__pyTooling_upload_artifact__.tar'
+  investigate:
+    description: "Print downloaded artifact's content."
+    type: boolean
+    required: false
+    default: false
 
 outputs:
   download-path:
@@ -99,13 +104,14 @@ runs:
 #      id: inspect
 #      shell: bash
 #      run: |
-#        tree -psh .
+#        tree -pash .
 
     - name: Extract tarball content(s)
       id: extract
       shell: bash
       working-directory: ${{ inputs.path }}
       run: |
+        # Extract tarball content(s)
         set +e
 
         ANSI_LIGHT_RED=$'\x1b[91m'
@@ -116,17 +122,17 @@ runs:
         if [[ "${{ inputs.name }}" == "" ]]; then
           artifactDirectories=(*/)
         else
-          artifactDirectories=(.)
+          artifactDirectories=(./)
         fi
 
         for artifactDirectory in "${artifactDirectories[@]}"; do
           pushd "${artifactDirectory}" > /dev/null
 
-          printf "%s" "Checking tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+          printf "%s" "Checking tarball   '${artifactDirectory}${{ inputs.tarball-name }}' ... "
           if [[ -f "${{ inputs.tarball-name }}" ]]; then
             printf "%s\n" "${ANSI_LIGHT_GREEN}[FOUND]${ANSI_NOCOLOR}"
 
-            printf "%s" "Extracting tarball '${artifactDirectory}/${{ inputs.tarball-name }}' ... "
+            printf "%s" "Extracting tarball '${artifactDirectory}${{ inputs.tarball-name }}' ... "
             tar -xf "${{ inputs.tarball-name }}"
             if [[ $? -ne 0 ]]; then
               printf "%s\n" "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
@@ -141,11 +147,38 @@ runs:
           popd > /dev/null
         done
 
+    - name: Investigate downloaded content
+      if: inputs.investigate
+      shell: bash
+      run: |
+        # Investigate downloaded content
+        set +e
+
+        if [[ "${{ inputs.name }}" == "" ]]; then
+          artifactDirectories=(*/)
+        else
+          artifactDirectories=(./)
+        fi
+
+        for artifactDirectory in "${artifactDirectories[@]}"; do
+          pushd "${artifactDirectory}" > /dev/null
+
+          if [[ "${{ runner.os }}" != "macOS" ]]; then
+            tree -pashC -I .git .
+          else
+            ls -lAh
+          fi
+          printf "%s\n" "--------------------------------------------------------------------------------"
+
+          popd > /dev/null
+        done
+
     - name: Remove temporary tarball
       id: cleanup
       shell: bash
       working-directory: ${{ inputs.path }}
       run: |
+        # Remove temporary tarball
         set +e
 
         ANSI_LIGHT_RED=$'\x1b[91m'
@@ -155,12 +188,12 @@ runs:
         if [[ "${{ inputs.name }}" == "" ]]; then
           artifactDirectories=(*/)
         else
-          artifactDirectories=(.)
+          artifactDirectories=(./)
         fi
 
         for artifactDirectory in "${artifactDirectories[@]}"; do
-          printf "%s" "Removing temporary tarball ... "
-          rm -f "${artifactDirectory}/${{ inputs.tarball-name }}"
+          printf "%s" "Removing temporary tarball '${artifactDirectory}${{ inputs.tarball-name }}' ... "
+          rm -f "${artifactDirectory}${{ inputs.tarball-name }}"
           if [[ $? -ne 0 ]]; then
             printf "%s\n" "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
           else
