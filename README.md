@@ -6,7 +6,7 @@ essential capability is not implemented by GitHub until now (requested on [05.12
 and still delayed and/or refused? to be implemented in the future. According to GitHub, the internal API doesn't allow
 the implementation of such a feature, but this actions is demonstrating a working solution.
 
-See [pyTooling/upload-artifact](https://github.com/pyTooling/upload-artifact) for the matching upload action.
+📤 See [pyTooling/upload-artifact](https://github.com/pyTooling/upload-artifact) for the matching upload action.
 
 
 ## Usage
@@ -46,6 +46,7 @@ jobs:
 | `repository`     |    no    | `${{ github.repository }}` | The repository owner and the repository name joined together by "/".<br> If github-token is specified, this is the repository that artifacts will be downloaded from.                                                                                                                                       |
 | `run-id`         |    no    | `${{ github.run_id }}`     | The id of the workflow run where the desired download artifact was uploaded from.<br> If github-token is specified, this is the run that artifacts will be downloaded from.                                                                                                                                 |
 | `tarball-name`   |    no    | [^1]                       |                                                                                                                                                                                                                                                                                                             |
+| `investigate`    |    no    | `false`                    | If enabled, show the downloaded artifact's directory content as a tree.                                                                                                                                                                                                                                     |
 
 [^1]: `'__pyTooling_upload_artifact__.tar'`
 

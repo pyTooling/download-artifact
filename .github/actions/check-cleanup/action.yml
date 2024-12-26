@@ -22,6 +22,10 @@ inputs:
     optional: true
     default: '.'
     type: string
+  tarball:
+    description: Name of the expected tarball.
+    type: string
+    default: '__pyTooling_upload_artifact__.tar'
 
 runs:
   using: composite
@@ -41,9 +45,9 @@ runs:
 
 
           printf "%s" "Was tarball removed ... "
-          if [[ -f ${{ inputs.directory }}/__pyTooling_upload_artifact__.tar ]]; then
+          if [[ -f ${{ inputs.directory }}/${{ inputs.tarball }} ]]; then
             printf "%s\n" "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}"
-            printf "%s\n" "${ANSI_LIGHT_RED}Artifact's tarball 'myDownload/__pyTooling_upload_artifact__.tar' still exists.${ANSI_NOCOLOR}"
+            printf "::error title=%s::%s\n" "check-cleanup" "Tarball '${{ inputs.directory }}/${{ inputs.tarball }}' wasn't removed."
             exit 1
           else
             printf "%s\n" "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
