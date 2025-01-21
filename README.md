@@ -1,3 +1,6 @@
+[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/download-artifact/.github%2Fworkflows%2FArtifactsDownload.yml?branch=dev&logo=githubactions)](https://GitHub.com/pyTooling/download-artifact/actions/workflows/ArtifactsDownload.yml)
+[![Sourcecode License](https://img.shields.io/badge/code-MIT%20License-green?longCache=true&style=flat-square&logoColor=fff)](LICENSE.md)
+
 # Artifact Download Action with File Permission Preservation
 
 This composite action, based on [`actions/download-artifact`](https://github.com/actions/download-artifact) and
@@ -60,7 +63,7 @@ jobs:
 
 ## Fixed behavior compared to `actions/download-artifact`
 
-1. **Do preserve file permissions**  
+1. **Preserve file permissions**  
    The artifact's content is collected in a tarball, which allows preserving file attributes like file permissions.
 2. **Don't remove common prefix from files**  
    `actions/upload-artifact` removes the common prefix from all files before storing in an artifact. This is not a
@@ -69,6 +72,9 @@ jobs:
    This action defines a root directory from where the content of the tarball is constructed. This is independent of the
    list of provided file patterns.
 
+## Further Features
+
+* Accepts artifacts uploaded from `actions/upload-artifact` (legacy artifacts) and `pyTooling/upload-artifacts`.
 
 ## Dependencies
 

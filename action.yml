@@ -14,7 +14,7 @@
 # WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-name: Download Artifact(s) (Preserve File Permissions)
+name: 📥 Download Artifact(s) (Preserve File Permissions)
 branding:
   icon: download
   color: yellow
@@ -93,9 +93,9 @@ runs:
   using: composite
   steps:
     # https://github.com/actions/download-artifact
-    - name: Download artifact
-      id: download
+    - name: 📥 Download artifact
       uses: actions/download-artifact@v4
+      id: download
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.path }}
@@ -146,17 +146,19 @@ runs:
                   fi
 
                   printf "Directoried: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
-                  printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
-                  if [[ "${{ runner.os }}" == "Linux" ]]; then
-                    tree -pashC -I .git .
-                  else
-                    ls -lAh
+                  if [[ "${{ inputs.investigate }}" == "true" ]]; then
+                    printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
+                    if [[ "${{ runner.os }}" == "Linux" ]]; then
+                      tree -pashC -I .git .
+                    else
+                      ls -lAh
+                    fi
+                    printf "::endgroup::\n"
                   fi
-                  printf "::endgroup::\n"
                 fi
               else
                 printf "%s\n" "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
-                printf "%s\n" "  ${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by actions/upload-artifact${ANSI_NOCOLOR}"
+                printf "  %s\n" "${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by actions/upload-artifact${ANSI_NOCOLOR}"
               fi
             )
           done
@@ -182,16 +184,18 @@ runs:
               fi
 
               printf "Directoried: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
-              printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
-              if [[ "${{ runner.os }}" == "Linux" ]]; then
-                tree -pashC -I .git .
-              else
-                ls -lAh
+              if [[ "${{ inputs.investigate }}" == "true" ]]; then
+                printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
+                if [[ "${{ runner.os }}" == "Linux" ]]; then
+                  tree -pashC -I .git .
+                else
+                  ls -lAh
+                fi
+                printf "::endgroup::\n"
               fi
-              printf "::endgroup::\n"
             fi
           else
             printf "%s\n" "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
-            printf "%s\n" "  ${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by actions/upload-artifact${ANSI_NOCOLOR}"
+            printf "  %s\n" "${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by ${ANSI_LIGHT_BLUE}'actions/upload-artifact'${ANSI_NOCOLOR}"
           fi
         fi

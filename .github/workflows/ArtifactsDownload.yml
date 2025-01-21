@@ -28,9 +28,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -52,6 +52,7 @@ jobs:
         uses: pyTooling/upload-artifact@v4
         with:
           name: ${{ matrix.os.name }}-release-1
+          investigate: true
           path: |
             document1.txt
             *.log
@@ -65,9 +66,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -79,13 +80,14 @@ jobs:
         uses: pyTooling/upload-artifact@v4
         with:
           name: ${{ matrix.os.name }}-release-2
+          investigate: true
           path: |
             document1.txt
             *.log
             bin/
             lib/
-#          if-no-files-found: error
-#          retention-days: 1
+          if-no-files-found: error
+          retention-days: 1
 
   Verify-ProjectRoot:
     name: ${{ matrix.os.icon }}⇐${{ matrix.uploader.icon }} Verify on ${{ matrix.os.name }} from ${{ matrix.uploader.name }} - Artifact content
@@ -96,13 +98,13 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
         uploader:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -156,13 +158,13 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
         uploader:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -218,13 +220,13 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
         uploader:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -298,13 +300,13 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
         uploader:
-          - {'icon': '🐧', 'name': 'Ubuntu',  'image': 'ubuntu-24.04'}
-          - {'icon': '🍏', 'name': 'macOS',   'image': 'macos-14'    }
-          - {'icon': '🪟', 'name': 'Windows', 'image': 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
 
     steps:
       - name: ⏬ Checkout repository to use local actions
