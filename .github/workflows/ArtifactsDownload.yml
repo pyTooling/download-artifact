@@ -87,7 +87,7 @@ jobs:
             bin/
             lib/
           if-no-files-found: error
-          retention-days: 1
+          # retention-days: 1
 
   Verify-ProjectRoot:
     name: ${{ matrix.os.icon }}⇐${{ matrix.uploader.icon }} Verify on ${{ matrix.os.name }} from ${{ matrix.uploader.name }} - Artifact content

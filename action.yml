@@ -117,7 +117,7 @@ runs:
         ANSI_LIGHT_RED=$'\x1b[91m'
         ANSI_LIGHT_GREEN=$'\x1b[92m'
         ANSI_LIGHT_YELLOW=$'\x1b[93m'
-        ANSI_LIGHT_BLUE="\e[94m"
+        ANSI_LIGHT_BLUE=$'\x1b[94m'
         ANSI_NOCOLOR=$'\x1b[0m'
 
         if [[ "${{ inputs.name }}" == "" ]]; then
@@ -145,7 +145,7 @@ runs:
                     printf "%s\n" "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
                   fi
 
-                  printf "Directoried: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
+                  printf "Directories: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
                   if [[ "${{ inputs.investigate }}" == "true" ]]; then
                     printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
                     if [[ "${{ runner.os }}" == "Linux" ]]; then
@@ -159,6 +159,17 @@ runs:
               else
                 printf "%s\n" "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
                 printf "  %s\n" "${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by actions/upload-artifact${ANSI_NOCOLOR}"
+
+                printf "Directories: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
+                if [[ "${{ inputs.investigate }}" == "true" ]]; then
+                  printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
+                  if [[ "${{ runner.os }}" == "Linux" ]]; then
+                    tree -pashC -I .git .
+                  else
+                    ls -lAh
+                  fi
+                  printf "::endgroup::\n"
+                fi
               fi
             )
           done
@@ -183,7 +194,7 @@ runs:
                 printf "%s\n" "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}"
               fi
 
-              printf "Directoried: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
+              printf "Directories: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
               if [[ "${{ inputs.investigate }}" == "true" ]]; then
                 printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
                 if [[ "${{ runner.os }}" == "Linux" ]]; then
@@ -197,5 +208,16 @@ runs:
           else
             printf "%s\n" "${ANSI_LIGHT_YELLOW}[MISSING]${ANSI_NOCOLOR}"
             printf "  %s\n" "${ANSI_LIGHT_YELLOW}→ assuming artifact was uploaded by ${ANSI_LIGHT_BLUE}'actions/upload-artifact'${ANSI_NOCOLOR}"
+
+            printf "Directories: %-4s  Files: %s\n" "$(($(find . -mindepth 0 -type d | wc -l) - 1))" "$(($(find . -mindepth 0 -type f | wc -l) - 1))"
+            if [[ "${{ inputs.investigate }}" == "true" ]]; then
+              printf "::group::${ANSI_LIGHT_BLUE}Artifact content of '${{ inputs.path }}/${artifactDirectory}'${ANSI_NOCOLOR}\n"
+              if [[ "${{ runner.os }}" == "Linux" ]]; then
+                tree -pashC -I .git .
+              else
+                ls -lAh
+              fi
+              printf "::endgroup::\n"
+            fi
           fi
         fi
