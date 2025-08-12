@@ -19,7 +19,7 @@ jobs:
   MyJob:
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v4
+        uses: pyTooling/download-artifact@v5
         with:
           name: binary
 
@@ -78,7 +78,7 @@ jobs:
 
 ## Dependencies
 
-* [actions/download-artifact@v4](https://github.com/actions/download-artifact)
+* [actions/download-artifact@v5](https://github.com/actions/download-artifact)
 
 ## Competing Actions
 
