@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: ./.github/actions/create-files
 
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: ./.github/actions/create-files
 
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 📥 Download artifact '${{ matrix.uploader.name }}-release-1' from ${{ matrix.uploader.name }}
         uses: pyTooling/download-artifact@dev
@@ -168,7 +168,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@dev
@@ -230,7 +230,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@dev
@@ -310,7 +310,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@dev
