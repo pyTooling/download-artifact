@@ -94,7 +94,7 @@ runs:
   steps:
     # https://github.com/actions/download-artifact
     - name: 📥 Download artifact
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       id: download
       with:
         name: ${{ inputs.name }}
