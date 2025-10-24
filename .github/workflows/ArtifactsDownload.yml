@@ -38,8 +38,8 @@ jobs:
 
       - uses: ./.github/actions/create-files
 
-      - name: 📤 Upload artifact via 'actions/upload-artifact@v4'
-        uses: actions/upload-artifact@v4
+      - name: 📤 Upload artifact via 'actions/upload-artifact@v5'
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.os.name }}-legacy
           path: |
