@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2024 The pyTooling Authors
+# Copyright © 2025 The pyTooling Authors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
@@ -94,7 +94,7 @@ runs:
   steps:
     # https://github.com/actions/download-artifact
     - name: 📥 Download artifact
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       id: download
       with:
         name: ${{ inputs.name }}

@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2024 The pyTooling Authors
+# Copyright © 2025 The pyTooling Authors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
@@ -38,8 +38,8 @@ jobs:
 
       - uses: ./.github/actions/create-files
 
-      - name: 📤 Upload artifact via 'actions/upload-artifact@v4'
-        uses: actions/upload-artifact@v4
+      - name: 📤 Upload artifact via 'actions/upload-artifact@v5'
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.os.name }}-legacy
           path: |
@@ -99,8 +99,8 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🍏', name: 'macOS',   image: 'macos-15'    }
+          - {icon: '🪟', name: 'Windows', image: 'windows-2025'}
         uploader:
           - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
           - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
