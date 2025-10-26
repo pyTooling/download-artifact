@@ -32,10 +32,10 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -72,10 +72,10 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -106,16 +106,16 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -152,7 +152,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             bin/program.py
@@ -170,16 +170,16 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -217,7 +217,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             myDownload/bin/program.py
@@ -236,16 +236,16 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -298,7 +298,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             myDownload/${{ matrix.uploader.name }}-release-1/bin/program.py
@@ -320,16 +320,16 @@ jobs:
       matrix:
         os:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
           - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
-          - {icon: '🏢', name: 'Windows ARM', image: 'windows-11-arm'  }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
