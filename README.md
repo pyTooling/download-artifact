@@ -24,13 +24,13 @@ jobs:
           name: binary
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@dev
+        uses: pyTooling/download-artifact@v6
         with:
           name: documentation
           path: public
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@dev
+        uses: pyTooling/download-artifact@v6
         with:
           pattern: unittest-*
           path: reports
