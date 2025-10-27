@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2024 The pyTooling Authors
+# Copyright © 2025 The pyTooling Authors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
@@ -21,6 +21,9 @@ on:
   workflow_dispatch:
 
 jobs:
+  Prepare:
+    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r6
+
   Build-1:
     name: ${{ matrix.os.icon }} Build 1 on ${{ matrix.os.name }} - Upload artifact
     runs-on: ${{ matrix.os.image }}
@@ -28,9 +31,11 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -38,8 +43,8 @@ jobs:
 
       - uses: ./.github/actions/create-files
 
-      - name: 📤 Upload artifact via 'actions/upload-artifact@v4'
-        uses: actions/upload-artifact@v4
+      - name: 📤 Upload artifact via 'actions/upload-artifact@v5'
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.os.name }}-legacy
           path: |
@@ -66,9 +71,11 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -98,13 +105,17 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -141,7 +152,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             bin/program.py
@@ -158,13 +169,17 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -202,7 +217,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             myDownload/bin/program.py
@@ -220,13 +235,17 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -279,7 +298,7 @@ jobs:
 
       - name: 📋 Verify file permissions
         uses: ./.github/actions/file-is-executable
-        if: matrix.os.name != 'Windows' && matrix.uploader.name != 'Windows'
+        if: matrix.os.name != 'Windows' && matrix.os.name != 'Windows-ARM' && matrix.uploader.name != 'Windows' && matrix.uploader.name != 'Windows-ARM'
         with:
           files: |
             myDownload/${{ matrix.uploader.name }}-release-1/bin/program.py
@@ -300,13 +319,17 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',  image: 'ubuntu-24.04'}
-          - {icon: '🍏', name: 'macOS',   image: 'macos-14'    }
-          - {icon: '🪟', name: 'Windows', image: 'windows-2022'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
+          - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
+          - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
@@ -335,3 +358,69 @@ jobs:
             lib/.library
             lib/gui/main.py
             lib/gui/dialog.py
+
+
+  TriggerTaggedRelease:
+    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r6
+    needs:
+      - Prepare
+      - Verify-ProjectRoot
+      - Verify-SubDirectory
+      - Verify-MultipleArtifacts
+      - Verify-legacy
+    if: needs.Prepare.outputs.is_release_commit == 'true' && github.event_name != 'schedule'
+    permissions:
+      contents: write  # required for create tag
+      actions:  write  # required for trigger workflow
+    with:
+      version:  ${{ needs.Prepare.outputs.version }}
+      auto_tag: ${{ needs.Prepare.outputs.is_release_commit }}
+      workflow: 'ArtifactsDownload.yml'
+    secrets: inherit
+
+  PullRequest:
+    name: Create Pull-Request
+    runs-on: 'ubuntu-24.04'
+    needs:
+      - Prepare
+      - Verify-ProjectRoot
+      - Verify-SubDirectory
+      - Verify-MultipleArtifacts
+      - Verify-legacy
+    if: needs.Prepare.outputs.is_release_tag == 'true'
+    permissions:
+      contents: write
+      actions:  write
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: ⏬ Checkout repository
+        uses: actions/checkout@v5
+        with:
+          # The command 'git describe' (used for version) needs the history.
+          fetch-depth: 0
+
+      - name: Create Pull-Request
+        run: |
+          set +e
+
+          ANSI_LIGHT_RED=$'\x1b[91m'
+          ANSI_LIGHT_GREEN=$'\x1b[92m'
+          ANSI_LIGHT_YELLOW=$'\x1b[93m'
+          ANSI_LIGHT_BLUE=$'\x1b[94m'
+          ANSI_NOCOLOR=$'\x1b[0m'
+
+          export GH_TOKEN=${{ github.token }}
+
+          title="Update v6 from ${{ needs.Prepare.outputs.version }}"
+
+          printf "Creating pull-request '${title}' ... "
+          gh pr create --base v6 --head main --title "${title}" --body "Auto generated"
+          if [[ $? -eq 0 ]]; then
+              printf "${ANSI_LIGHT_GREEN}[OK]${ANSI_NOCOLOR}\n"
+          else
+            printf "${ANSI_LIGHT_RED}[FAILED]${ANSI_NOCOLOR}\n"
+            printf "::error title=%s::%s\n" "GitHub PullRequest API" "Couldn't create pull-request."
+          fi
