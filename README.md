@@ -19,18 +19,18 @@ jobs:
   MyJob:
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v6
+        uses: pyTooling/download-artifact@v7
         with:
           name: binary
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v6
+        uses: pyTooling/download-artifact@v7
         with:
           name: documentation
           path: public
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v6
+        uses: pyTooling/download-artifact@v7
         with:
           pattern: unittest-*
           path: reports
@@ -78,7 +78,7 @@ jobs:
 
 ## Dependencies
 
-* [actions/download-artifact@v6](https://github.com/actions/download-artifact)
+* [actions/download-artifact@v7](https://github.com/actions/download-artifact)
 
 ## Competing Actions
 
