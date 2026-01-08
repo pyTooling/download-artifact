@@ -22,7 +22,7 @@ on:
 
 jobs:
   Prepare:
-    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r6
+    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r7
 
   Build-1:
     name: ${{ matrix.os.icon }} Build 1 on ${{ matrix.os.name }} - Upload artifact
@@ -361,7 +361,7 @@ jobs:
 
 
   TriggerTaggedRelease:
-    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r6
+    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r7
     needs:
       - Prepare
       - Verify-ProjectRoot
