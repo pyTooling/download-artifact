@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2025 The pyTooling Authors
+# Copyright © 2026 The pyTooling Authors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 # documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
@@ -31,15 +31,15 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: ./.github/actions/create-files
 
@@ -71,15 +71,15 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: ./.github/actions/create-files
 
@@ -105,21 +105,21 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 📥 Download artifact '${{ matrix.uploader.name }}-release-1' from ${{ matrix.uploader.name }}
         uses: pyTooling/download-artifact@v8
@@ -169,21 +169,21 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@v8
@@ -235,21 +235,21 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@v8
@@ -319,21 +319,21 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
         uploader:
-          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-24.04'    }
-          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-24.04-arm'}
+          - {icon: '🐧', name: 'Ubuntu',      image: 'ubuntu-26.04'    }
+          - {icon: '⛄', name: 'Ubuntu-ARM',  image: 'ubuntu-26.04-arm'}
           - {icon: '🍏', name: 'macOS',       image: 'macos-15'        }
           - {icon: '🪟', name: 'Windows',     image: 'windows-2025'    }
           - {icon: '🏢', name: 'Windows-ARM', image: 'windows-11-arm'  }
 
     steps:
       - name: ⏬ Checkout repository to use local actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 📥 Download artifact
         uses: pyTooling/download-artifact@v8
@@ -380,7 +380,7 @@ jobs:
 
   PullRequest:
     name: Create Pull-Request
-    runs-on: 'ubuntu-24.04'
+    runs-on: 'ubuntu-26.04'
     needs:
       - Prepare
       - Verify-ProjectRoot
@@ -397,7 +397,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           # The command 'git describe' (used for version) needs the history.
           fetch-depth: 0
