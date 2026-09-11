@@ -25,7 +25,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r7
 
   # '@dev' until pyTooling/Actions releases these two templates; then '@r8' like the rest.
-  Marketplace:
+  CheckMarketplace:
     uses: pyTooling/Actions/.github/workflows/CheckMarketplaceMetadata.yml@dev
 
   Build-1:
@@ -368,7 +368,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r7
     needs:
       - Prepare
-      - Marketplace
+      - CheckMarketplace
       - Verify-ProjectRoot
       - Verify-SubDirectory
       - Verify-MultipleArtifacts
@@ -387,7 +387,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/UpdateVersionBranch.yml@dev
     needs:
       - Prepare
-      - Marketplace
+      - CheckMarketplace
       - Verify-ProjectRoot
       - Verify-SubDirectory
       - Verify-MultipleArtifacts
