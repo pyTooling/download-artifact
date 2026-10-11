@@ -71,6 +71,13 @@ jobs:
    of the artifact.  
    This action defines a root directory from where the content of the tarball is constructed. This is independent of the
    list of provided file patterns.
+3. **One directory per artifact, however many match**  
+   Without `name` and with `merge-multiple: false`, `actions/download-artifact` extracts each matching artifact into a
+   directory named after it - unless exactly one artifact matches: then its files land directly in `path`. So the
+   directory layout changes with the number of matching artifacts.  
+   This action puts a single matching artifact into `path/<name>` as well. It looks up the artifact's name via the
+   GitHub API, which needs the permission `actions: read`; without it, the action warns and keeps the single artifact
+   directly in `path`.
 
 ## Further Features
 
