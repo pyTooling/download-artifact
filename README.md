@@ -1,4 +1,4 @@
-[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/download-artifact/.github%2Fworkflows%2FArtifactsDownload.yml?branch=dev&logo=githubactions)](https://GitHub.com/pyTooling/download-artifact/actions/workflows/ArtifactsDownload.yml)
+[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/download-artifact/.github%2Fworkflows%2FArtifactsDownload.yml?branch=v8&logo=githubactions)](https://GitHub.com/pyTooling/download-artifact/actions/workflows/ArtifactsDownload.yml)
 [![Sourcecode License](https://img.shields.io/badge/code-MIT%20License-green?longCache=true&style=flat-square&logoColor=fff)](LICENSE.md)
 
 # Artifact Download Action with File Permission Preservation
@@ -19,18 +19,18 @@ jobs:
   MyJob:
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           name: binary
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           name: documentation
           path: public
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           pattern: unittest-*
           path: reports
