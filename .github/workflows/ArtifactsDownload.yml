@@ -22,11 +22,10 @@ on:
 
 jobs:
   Prepare:
-    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r7
+    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r8
 
-  # '@dev' until pyTooling/Actions releases these two templates; then '@r8' like the rest.
   CheckMarketplace:
-    uses: pyTooling/Actions/.github/workflows/CheckMarketplaceMetadata.yml@dev
+    uses: pyTooling/Actions/.github/workflows/CheckMarketplaceMetadata.yml@r8
 
   Build-1:
     name: ${{ matrix.os.icon }} Build 1 on ${{ matrix.os.name }} - Upload artifact
@@ -449,7 +448,7 @@ jobs:
 
 
   TriggerTaggedRelease:
-    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r7
+    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r8
     needs:
       - Prepare
       - CheckMarketplace
@@ -469,7 +468,7 @@ jobs:
     secrets: inherit
 
   UpdateVersionBranch:
-    uses: pyTooling/Actions/.github/workflows/UpdateVersionBranch.yml@dev
+    uses: pyTooling/Actions/.github/workflows/UpdateVersionBranch.yml@r8
     needs:
       - Prepare
       - CheckMarketplace
