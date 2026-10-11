@@ -56,8 +56,8 @@ jobs:
             bin/
             lib/*.py
 
-      - name: 📤 Upload artifact via 'pyTooling/upload-artifact@main'
-        uses: pyTooling/upload-artifact@main
+      - name: 📤 Upload artifact via 'pyTooling/upload-artifact@v7'
+        uses: pyTooling/upload-artifact@v7
         with:
           name: ${{ matrix.os.name }}-release-1
           investigate: true
@@ -86,8 +86,8 @@ jobs:
 
       - uses: ./.github/actions/create-files
 
-      - name: 📤 Upload artifact via 'pyTooling/upload-artifact@main'
-        uses: pyTooling/upload-artifact@main
+      - name: 📤 Upload artifact via 'pyTooling/upload-artifact@v7'
+        uses: pyTooling/upload-artifact@v7
         with:
           name: ${{ matrix.os.name }}-release-2
           investigate: true
