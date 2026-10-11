@@ -1,4 +1,4 @@
-[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/download-artifact/.github%2Fworkflows%2FArtifactsDownload.yml?branch=dev&logo=githubactions)](https://GitHub.com/pyTooling/download-artifact/actions/workflows/ArtifactsDownload.yml)
+[![GitHub Workflow - Build and Test Status](https://img.shields.io/github/actions/workflow/status/pyTooling/download-artifact/.github%2Fworkflows%2FArtifactsDownload.yml?branch=v8&logo=githubactions)](https://GitHub.com/pyTooling/download-artifact/actions/workflows/ArtifactsDownload.yml)
 [![Sourcecode License](https://img.shields.io/badge/code-MIT%20License-green?longCache=true&style=flat-square&logoColor=fff)](LICENSE.md)
 
 # Artifact Download Action with File Permission Preservation
@@ -19,18 +19,18 @@ jobs:
   MyJob:
     steps:
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           name: binary
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           name: documentation
           path: public
 
       - name: 📥 Download artifact
-        uses: pyTooling/download-artifact@v7
+        uses: pyTooling/download-artifact@v8
         with:
           pattern: unittest-*
           path: reports
@@ -71,6 +71,13 @@ jobs:
    of the artifact.  
    This action defines a root directory from where the content of the tarball is constructed. This is independent of the
    list of provided file patterns.
+3. **One directory per artifact, however many match**  
+   Without `name` and with `merge-multiple: false`, `actions/download-artifact` extracts each matching artifact into a
+   directory named after it - unless exactly one artifact matches: then its files land directly in `path`. So the
+   directory layout changes with the number of matching artifacts.  
+   This action puts a single matching artifact into `path/<name>` as well. It looks up the artifact's name via the
+   GitHub API, which needs the permission `actions: read`; without it, the action warns and keeps the single artifact
+   directly in `path`.
 
 ## Further Features
 
